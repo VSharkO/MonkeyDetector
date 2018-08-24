@@ -7,8 +7,6 @@ import javax.inject.Inject
 class App : Application() {
 
     lateinit var instance: App
-
-    @Inject
     lateinit var component: AppComponent
 
         override fun onCreate() {
