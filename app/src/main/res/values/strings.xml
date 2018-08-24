@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MonkeyDetector</string>
+    <string name="monkeyPicture">monkeyPicture</string>
+    <string name="or">or</string>
+    <string name="paste_url">Enter Image Url</string>
+    <string name="import_image_with_url">Import image with Url:</string>
+    <string name="import_local_image">Import local image</string>
+    <string name="importText">Import</string>
+    <string name="find">Find</string>
+    <string name="go">Go</string>
+</resources>
