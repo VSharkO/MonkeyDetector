@@ -6,13 +6,11 @@ import javax.inject.Inject
 
 class App : Application() {
 
-    lateinit var instance: App
-    lateinit var component: AppComponent
+    val instance: App = this
+    val component: AppComponent = DaggerAppComponent.create()
 
-        override fun onCreate() {
+    override fun onCreate() {
             super.onCreate()
-            instance = this
-            component = DaggerAppComponent.create()
             Timber.plant(Timber.DebugTree())
         }
 }

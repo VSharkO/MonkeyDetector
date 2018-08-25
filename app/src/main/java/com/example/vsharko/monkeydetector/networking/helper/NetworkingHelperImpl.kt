@@ -9,7 +9,7 @@ import retrofit2.Response
 
 class NetworkingHelperImpl(private val mService: Service) : NetworkingHelper {
 
-    override fun getProductsFromAPI(listener: NetworkResponseListener<Predictions>, search: String) {
+    override fun getPredictionsFromAPI(listener: NetworkResponseListener<Predictions>, search: String) {
         mService.getPrediction(search).enqueue(object : Callback<Predictions> {
             override fun onResponse(call: Call<Predictions>, response: Response<Predictions>) {
                 if (response.body() != null) {
