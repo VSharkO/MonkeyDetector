@@ -14,11 +14,13 @@ class MainPresenterImpl constructor(view: MainActivityView,private val helper: N
 
     var listener = object : NetworkResponseListener<Predictions> {
         override fun onSuccess(callback: Predictions) {
-           view.setResultText(callback.predictions[0].tagName)
+            view.setResultText(callback.predictions[0].tagName,callback.predictions[0].probability)
+            view.changeVisibilityViews()
         }
 
         override fun onFailure(throwable: Throwable) {
             Timber.e(throwable)
+            view.showFailureToast()
         }
     }
 }

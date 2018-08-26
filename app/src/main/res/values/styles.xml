@@ -12,4 +12,11 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-</resources>
+    <style name="ResultTextViews_mainActivity">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:visibility">gone</item>
+     </style>
+
+ </resources>

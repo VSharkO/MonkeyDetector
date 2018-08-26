@@ -8,4 +8,8 @@
     <string name="importText">Import</string>
     <string name="find">Find</string>
     <string name="go">Go</string>
+    <string name="this_is_probably">This is probably:</string>
+    <string name="probability">Probability: </string>
+    <string name="try_again">Try Again</string>
+    <string name="failureToast">Failed to load image, try again!</string>
 </resources>

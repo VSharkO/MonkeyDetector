@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.MainActivity">
+    tools:context=".ui.view.MainActivity"
+    android:animateLayoutChanges="true"
+    >
 
     <View
         android:id="@+id/backgroundFirstSection"
@@ -14,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/editTextImageUrl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textViewImageUrl">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
     </View>
 
     <View
@@ -46,9 +48,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/paste_url"
         android:inputType="textUri"
+        android:textCursorDrawable="@null"
+        android:backgroundTint="@android:color/tab_indicator_text"
         app:layout_constraintEnd_toStartOf="@+id/findButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewImageUrl" />
@@ -58,12 +62,11 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:contentDescription="@string/monkeyPicture"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/monkeys"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <Button
@@ -72,7 +75,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/find"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewImageUrl" />
@@ -83,7 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/or"
         android:textColor="@color/black"
@@ -99,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/import_local_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewOr" />
@@ -132,6 +133,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/importButton" />
+
+    <TextView
+        android:id="@+id/resultText"
+        style="@style/ResultTextViews_mainActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/this_is_probably"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/resultTextSpacious"
+        style="@style/ResultTextViews_mainActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultText" />
+
+    <TextView
+        android:id="@+id/probabilityText"
+        style="@style/ResultTextViews_mainActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultTextSpacious" />
+
+    <Button
+        android:id="@+id/tryAgainButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/green"
+
+        android:text="@string/try_again"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/probabilityText" />
 
 
 </android.support.constraint.ConstraintLayout>

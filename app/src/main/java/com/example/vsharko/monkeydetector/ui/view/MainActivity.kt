@@ -2,6 +2,8 @@ package com.example.vsharko.monkeydetector.ui.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.vsharko.monkeydetector.App
 import com.example.vsharko.monkeydetector.R
@@ -12,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainActivityView {
+
 
     @Inject lateinit var presenter : MainPresenter
 
@@ -32,13 +35,38 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                 .into(imageView)
     }
 
-    override fun setResultText(result : String){
-        textViewOr.text = result
+    override fun setResultText(result : String , probability : Double){
+        var resultSplit = result.split("_")
+        resultTextSpacious.text = "${resultSplit[0].capitalize()} ${resultSplit[1]}"
+        probabilityText.text = getString(R.string.probability)
+                .plus(" "+"%.2f".format(probability*100) + "%")
     }
 
     private fun setOnclickListeners(){
         findButton.setOnClickListener{setPicture()}
-        goButton.setOnClickListener{presenter.getPredictions(editTextImageUrl.text.toString())}
+        goButton.setOnClickListener{ presenter.getPredictions(editTextImageUrl.text.toString())
+                                        setPicture() }
+
+        tryAgainButton.setOnClickListener {changeVisibilityViews()}
     }
 
+    override fun changeVisibilityViews(){
+        val views: List<View> = mutableListOf(editTextImageUrl,textViewOr,textViewImageUrl,
+                textViewImportLocalImage,findButton,importButton,goButton,
+                resultText,resultTextSpacious,probabilityText,tryAgainButton)
+        changeViewsVisibility(views)
+    }
+
+    private fun changeViewsVisibility(views : List<View>){
+        for(view in views){
+            view.visibility = if (view.visibility == View.GONE)
+                View.VISIBLE
+            else
+                View.GONE
+        }
+    }
+
+    override fun showFailureToast() {
+        Toast.makeText(this,getString(R.string.failureToast),Toast.LENGTH_LONG).show()
+    }
 }

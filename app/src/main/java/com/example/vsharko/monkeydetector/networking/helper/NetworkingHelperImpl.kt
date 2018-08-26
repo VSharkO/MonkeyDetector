@@ -16,6 +16,8 @@ class NetworkingHelperImpl(private val mService: Service) : NetworkingHelper {
                     val data = response.body()
                     if (data != null)
                         listener.onSuccess(data)
+                }else if(!response.isSuccessful){
+                    onFailure(call,Throwable("bad request"))
                 }
 
             }
