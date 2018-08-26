@@ -10,6 +10,7 @@ import com.example.vsharko.monkeydetector.R
 import com.example.vsharko.monkeydetector.ui.DaggerMainComponent
 import com.example.vsharko.monkeydetector.ui.module.UiModule
 import com.example.vsharko.monkeydetector.ui.presenter.MainPresenter
+import com.example.vsharko.monkeydetector.utils.utils
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                 .build()
                 .inject(this)
 
-        setOnclickListeners()
+        setListeners()
     }
 
     private fun setPicture(){
@@ -36,37 +37,30 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     }
 
     override fun setResultText(result : String , probability : Double){
-        var resultSplit = result.split("_")
-        resultTextSpacious.text = "${resultSplit[0].capitalize()} ${resultSplit[1]}"
-        probabilityText.text = getString(R.string.probability)
+        val stringProbability = getString(R.string.probability)
                 .plus(" "+"%.2f".format(probability*100) + "%")
+
+        resultTextSpacious.text = result.capitalize()
+        probabilityText.text = stringProbability
     }
 
-    private fun setOnclickListeners(){
+    private fun setListeners(){
         findButton.setOnClickListener{setPicture()}
         goButton.setOnClickListener{ presenter.getPredictions(editTextImageUrl.text.toString())
                                         setPicture() }
 
-        tryAgainButton.setOnClickListener {changeVisibilityViews()}
+        tryAgainButton.setOnClickListener {changeVisibilityToCrucialViews()}
     }
 
-    override fun changeVisibilityViews(){
+    override fun changeVisibilityToCrucialViews(){
         val views: List<View> = mutableListOf(editTextImageUrl,textViewOr,textViewImageUrl,
                 textViewImportLocalImage,findButton,importButton,goButton,
                 resultText,resultTextSpacious,probabilityText,tryAgainButton)
-        changeViewsVisibility(views)
-    }
-
-    private fun changeViewsVisibility(views : List<View>){
-        for(view in views){
-            view.visibility = if (view.visibility == View.GONE)
-                View.VISIBLE
-            else
-                View.GONE
-        }
+        utils.visibilityChanger(views)
     }
 
     override fun showFailureToast() {
-        Toast.makeText(this,getString(R.string.failureToast),Toast.LENGTH_LONG).show()
+        Toast.makeText(this,getString(R.string.failureToast),Toast.LENGTH_SHORT).show()
     }
+
 }

@@ -12,10 +12,12 @@ class MainPresenterImpl constructor(view: MainActivityView,private val helper: N
         helper.getPredictionsFromAPI(listener,search)
     }
 
-    var listener = object : NetworkResponseListener<Predictions> {
+    private val listener = object : NetworkResponseListener<Predictions> {
         override fun onSuccess(callback: Predictions) {
-            view.setResultText(callback.predictions[0].tagName,callback.predictions[0].probability)
-            view.changeVisibilityViews()
+            val prediction = callback.predictions[0].tagName
+            val probability = callback.predictions[0].probability
+            view.setResultText(predictionFormatName(prediction),probability)
+            view.changeVisibilityToCrucialViews()
         }
 
         override fun onFailure(throwable: Throwable) {
@@ -23,4 +25,22 @@ class MainPresenterImpl constructor(view: MainActivityView,private val helper: N
             view.showFailureToast()
         }
     }
+
+    fun predictionFormatName(result : String) : String{
+        val resultSplit = result.split("_")
+        val sb = StringBuilder()
+
+        if (resultSplit.size > 1){
+            for (word in resultSplit) {
+                sb.append(word)
+                sb.append(" ")
+            }
+            sb.delete(sb.length-1,sb.length -1)
+        }
+        else
+            sb.append(resultSplit)
+
+        return sb.toString()
+    }
 }
+

@@ -19,7 +19,6 @@ class NetworkingHelperImpl(private val mService: Service) : NetworkingHelper {
                 }else if(!response.isSuccessful){
                     onFailure(call,Throwable("bad request"))
                 }
-
             }
 
             override fun onFailure(call: Call<Predictions>, t: Throwable) {

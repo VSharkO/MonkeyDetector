@@ -24,7 +24,7 @@ class NetworkModule {
     @Provides
     fun provideRestClient(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(Constants().NEWS_API_BASE_URL)
+                .baseUrl(Constants.NEWS_API_BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
