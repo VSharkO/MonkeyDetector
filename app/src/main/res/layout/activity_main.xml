@@ -19,25 +19,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
     </View>
 
-    <View
-        android:id="@+id/backgroundSecondSection"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/grayBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/importButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewImportLocalImage">
-    </View>
-
     <TextView
         android:id="@+id/textViewImageUrl"
         style="@style/textViews_mainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/import_image_with_url"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView" />
@@ -60,7 +48,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:contentDescription="@string/monkeyPicture"
         android:src="@drawable/monkeys"
         android:scaleType="fitXY"
@@ -79,45 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewImageUrl" />
 
-    <TextView
-        android:id="@+id/textViewOr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="@string/or"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextImageUrl" />
-
-    <TextView
-        android:id="@+id/textViewImportLocalImage"
-        style="@style/textViews_mainActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/import_local_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOr" />
-
-    <Button
-        android:id="@+id/importButton"
-        android:layout_width="225dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/importText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewImportLocalImage" />
-
     <Button
         android:id="@+id/goButton"
         android:layout_width="0dp"
@@ -125,14 +74,12 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="@color/green"
         android:text="@string/go"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/importButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/resultText"
@@ -156,16 +103,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultText" />
 
-    <TextView
-        android:id="@+id/probabilityText"
-        style="@style/ResultTextViews_mainActivity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultTextSpacious" />
-
     <Button
         android:id="@+id/tryAgainButton"
         android:layout_width="0dp"
@@ -176,8 +113,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/probabilityText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

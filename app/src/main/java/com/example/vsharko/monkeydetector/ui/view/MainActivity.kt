@@ -15,9 +15,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainActivityView {
+    override fun changeVisibilityToCrucialViews() {
+        val views: List<View> = mutableListOf(editTextImageUrl, textViewImageUrl, findButton, goButton,
+                resultText, resultTextSpacious, tryAgainButton)
+        utils.visibilityChanger(views)
+    }
+
+    override fun showFailureToast() {
+        Toast.makeText(this, getString(R.string.failureToast), Toast.LENGTH_SHORT).show()
+    }
 
 
-    @Inject lateinit var presenter : MainPresenter
+    @Inject
+    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,37 +40,26 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         setListeners()
     }
 
-    private fun setPicture(){
+    private fun setPicture() {
         Glide.with(imageView)
                 .load(editTextImageUrl.text.toString())
                 .into(imageView)
     }
 
-    override fun setResultText(result : String , probability : Double){
+    override fun setResultText(result: String, probability: Double) {
         val stringProbability = getString(R.string.probability)
-                .plus(" "+"%.2f".format(probability*100) + "%")
+                .plus(" " + "%.2f".format(probability * 100) + "%")
 
         resultTextSpacious.text = result.capitalize()
-        probabilityText.text = stringProbability
     }
 
-    private fun setListeners(){
-        findButton.setOnClickListener{setPicture()}
-        goButton.setOnClickListener{ presenter.getPredictions(editTextImageUrl.text.toString())
-                                        setPicture() }
+    private fun setListeners() {
+        findButton.setOnClickListener { setPicture() }
+        goButton.setOnClickListener {
+            presenter.getPredictions(editTextImageUrl.text.toString())
+            setPicture()
+        }
 
-        tryAgainButton.setOnClickListener {changeVisibilityToCrucialViews()}
+        tryAgainButton.setOnClickListener { changeVisibilityToCrucialViews() }
     }
-
-    override fun changeVisibilityToCrucialViews(){
-        val views: List<View> = mutableListOf(editTextImageUrl,textViewOr,textViewImageUrl,
-                textViewImportLocalImage,findButton,importButton,goButton,
-                resultText,resultTextSpacious,probabilityText,tryAgainButton)
-        utils.visibilityChanger(views)
-    }
-
-    override fun showFailureToast() {
-        Toast.makeText(this,getString(R.string.failureToast),Toast.LENGTH_SHORT).show()
-    }
-
 }
